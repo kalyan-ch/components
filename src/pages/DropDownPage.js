@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DropDown from "../components/DropDown";
+import PageHeading from "../components/PageHeading";
 
 const DropDownPage = () => {
   const [selectedOpt, setSelectedOpt] = useState(null);
@@ -24,7 +25,7 @@ const DropDownPage = () => {
 
   return (
     <div className="dropdown">
-      <h2 className="text-2xl bold">DropDown</h2>
+      <PageHeading>Accordion</PageHeading>
       <DropDown
         options={options}
         value={selectedOpt}

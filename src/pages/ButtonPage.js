@@ -6,9 +6,11 @@ import {
   FaExclamation,
   FaRegTimesCircle,
 } from "react-icons/fa";
+import PageHeading from "../components/PageHeading";
 const ButtonPage = () => {
   return (
     <div className="App ml-10">
+      <PageHeading>Buttons</PageHeading>
       <div>
         <Button success rounded outline>
           <FaCheckCircle /> Success

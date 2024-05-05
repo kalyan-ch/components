@@ -1,6 +1,39 @@
+import useNavigation from "../hooks/use-navigation";
+import Link from "./Link";
 
 const Sidebar = () => {
-  return <div></div>;
+  const links = [
+    {
+      label: "DropDown",
+      path: "/",
+    },
+    {
+      label: "Accordion",
+      path: "/accordion",
+    },
+    {
+      label: "Buttons",
+      path: "/buttons",
+    },
+    {
+      label: "Modal",
+      path: "/modal"
+    }
+  ];
+
+  const renderedLinks = links.map((li) => {
+    return (
+      <Link key={li.label} to={li.path} className="mb-3" activeClassName="font-bold border-l-4 border-blue-500 pl-2 items-start">
+        {li.label}
+      </Link>
+    );
+  });
+
+  return (
+    <div className="sticky top-0 overflow-y-scroll flex flex-col">
+      {renderedLinks}
+    </div>
+  );
 };
 
 export default Sidebar;

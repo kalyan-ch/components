@@ -1,8 +1,34 @@
+import Route from "./components/Route";
+import Sidebar from "./components/Sidebar";
+import AccordionPage from "./pages/AccordionPage";
+import ButtonPage from "./pages/ButtonPage";
+import DropDownPage from "./pages/DropDownPage";
+import ModalPage from "./pages/ModalPage";
 
 const App = () => {
   return (
     <div className="app container mx-auto">
       <h1 className="text-3xl font-bold">Components</h1>
+      <div className=" grid grid-cols-6 gap-4 mt-4">
+        <Sidebar />
+        <div className="col-span-5">
+          <Route path="/accordion">
+            <AccordionPage />
+          </Route>
+
+          <Route path="/">
+            <DropDownPage />
+          </Route>
+
+          <Route path="/buttons">
+            <ButtonPage />
+          </Route>
+
+          <Route path="/modal">
+            <ModalPage />
+          </Route>
+        </div>
+      </div>
     </div>
   );
 };

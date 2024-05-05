@@ -9,6 +9,7 @@ const Button = ({
   warning,
   danger,
   children,
+  ...rest
 }) => {
   const finalClassName = classNames(
     "flex items-center px-3 py-1.5 border mt-3",
@@ -22,7 +23,7 @@ const Button = ({
       "rounded-full": rounded,
     }
   );
-  return <button className={finalClassName}>{children}</button>;
+  return <button {...rest} className={finalClassName}>{children}</button>;
 };
 
 Button.propTypes = {
