@@ -1,4 +1,3 @@
-import useNavigation from "../hooks/use-navigation";
 import Link from "./Link";
 
 const Sidebar = () => {
@@ -17,13 +16,22 @@ const Sidebar = () => {
     },
     {
       label: "Modal",
-      path: "/modal"
-    }
+      path: "/modal",
+    },
+    {
+      label: "Table",
+      path: "/table",
+    },
   ];
 
   const renderedLinks = links.map((li) => {
     return (
-      <Link key={li.label} to={li.path} className="mb-3" activeClassName="font-bold border-l-4 border-blue-500 pl-2 items-start">
+      <Link
+        key={li.label}
+        to={li.path}
+        className="mb-3"
+        activeClassName="font-bold border-l-4 border-blue-500 pl-2 items-start"
+      >
         {li.label}
       </Link>
     );

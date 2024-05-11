@@ -12,7 +12,11 @@ const Link = ({ to, children, className, activeClassName }) => {
     navigate(to);
   };
 
-  const classes = classNames('text-blue-500', className, currentPath === to && activeClassName);
+  const classes = classNames(
+    "text-blue-500",
+    className,
+    currentPath === to && activeClassName
+  );
 
   return (
     <a onClick={handleClick} className={classes} href={to}>
