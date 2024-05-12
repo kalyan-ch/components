@@ -1,11 +1,14 @@
-import { useState } from "react";
-import Table from "./Table";
 import { MdOutlineArrowDropDown, MdOutlineArrowDropUp } from "react-icons/md";
+import useSort from "../hooks/use-sort";
+import Table from "./Table";
 
 const SortableTable = (props) => {
   const { data, config } = props;
-  const [sortOrder, setSortOrder] = useState(null);
-  const [sortCol, setSortCol] = useState(null);
+
+  const { sortOrder, sortCol, setSortColAndLabel, sortedData } = useSort(
+    data,
+    config
+  );
 
   const getIcons = (label) => {
     const both = (
@@ -36,26 +39,6 @@ const SortableTable = (props) => {
     }
   };
 
-  const handleHeaderClick = (label) => {
-
-    if(sortCol && label !== sortCol) {
-      setSortOrder("asc");
-      setSortCol(label);
-      return;
-    }
-
-    if (!sortOrder) {
-      setSortOrder("asc");
-      setSortCol(label);
-    } else if (sortOrder === "asc") {
-      setSortOrder("desc");
-      setSortCol(label);
-    } else if (sortOrder === "desc") {
-      setSortOrder(null);
-      setSortCol(null);
-    }
-  };
-
   const newConfig = config.map((conf) => {
     if (conf.sortValue) {
       return {
@@ -63,7 +46,7 @@ const SortableTable = (props) => {
         header: () => (
           <th
             className="cursor-pointer hover:text-blue-400"
-            onClick={(e) => handleHeaderClick(conf.label)}
+            onClick={(e) => setSortColAndLabel(conf.label)}
           >
             <div className="flex items-center">
               {conf.label}
@@ -76,23 +59,6 @@ const SortableTable = (props) => {
       return conf;
     }
   });
-
-  let sortedData = data;
-  if (sortOrder && sortCol) {
-    const { sortValue } = config.find((col) => col.label === sortCol);
-    sortedData = [...data];
-    sortedData.sort((a, b) => {
-      const valA = sortValue(a);
-      const valB = sortValue(b);
-
-      const order = sortOrder === "asc" ? 1 : -1;
-      if (typeof valA === "string") {
-        return valA.localeCompare(valB) * order;
-      } else {
-        return (valA - valB) * order;
-      }
-    });
-  }
 
   return (
     <div>
